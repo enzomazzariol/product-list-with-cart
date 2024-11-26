@@ -207,6 +207,11 @@
     color: var(--rose-100);
 }
 
+.button-incrementar {
+    background-color: inherit;
+    border: transparent;
+}
+
 
 /* Modal para confirmar pedido */
 .modal-overlay {

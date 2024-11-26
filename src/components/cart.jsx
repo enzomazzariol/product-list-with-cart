@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Modal from './Modal';
 import CartItem from './cartItem';
 
-function Cart({ cart, setCart }) {
+function Cart({ cart, removeFromCart }) {
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => setShowModal(true);
@@ -14,15 +14,11 @@ function Cart({ cart, setCart }) {
         0
     );
 
-    const removeItem = (itemToRemove) => {
-        setCart((prevCart) =>
-            prevCart.filter((item) => item.name !== itemToRemove.name)
-        );
-    };
+    const itemsInCart = cart.filter((item) => item.cantidad > 0);
 
     return (
         <section className="flex-shrink-1 p-4 ms-5 cart-container">
-            {cart.length === 0 ? (
+            {itemsInCart.length === 0 ? (
                 <>
                     <p className="cart-title">Your Cart (0)</p>
                     <img
@@ -36,12 +32,12 @@ function Cart({ cart, setCart }) {
                 </>
             ) : (
                 <>
-                    <p className="cart-title mb-3">Your Cart ({cart.length})</p>
-                    {cart.map((item) => (
+                    <p className="cart-title mb-3">Your Cart ({itemsInCart.length})</p>
+                    {itemsInCart.map((item) => (
                         <CartItem
                             key={item.name}
                             item={item}
-                            removeItem={removeItem}
+                            removeFromCart={removeFromCart}
                         />
                     ))}
                     <div className="d-flex flex-column mt-4">
@@ -69,7 +65,14 @@ function Cart({ cart, setCart }) {
                     </div>
                 </>
             )}
-            <Modal show={showModal} close={closeModal}></Modal>
+
+            {showModal && (
+                <Modal
+                    setShowModal={setShowModal}
+                    closeModal={closeModal}
+                    totalPrice={totalPrice}
+                />
+            )}
         </section>
     );
 }

@@ -1,7 +1,8 @@
 // CartItem.jsx
 /* eslint-disable react/prop-types */
 
-function CartItem({ item, removeItem }) {
+function CartItem({ item, removeFromCart }) {
+    
     return (
         <div key={item.name} className="cart-item d-flex justify-content-between mb-3">
             <div className="d-flex flex-column">
@@ -19,7 +20,7 @@ function CartItem({ item, removeItem }) {
             </div>
             <button
                 className="remove-item-button d-flex align-items-center mt-3"
-                onClick={() => removeItem(item)}
+                onClick={() => removeFromCart(item)}
             >
                 <img
                     src="src/assets/images/icon-remove-item.svg"

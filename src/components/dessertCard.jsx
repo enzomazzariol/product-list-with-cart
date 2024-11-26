@@ -1,39 +1,35 @@
 import { useState } from "react";
 /* eslint-disable react/prop-types */
 
-export const DessertCard = ({dessert, addToCart, updateCantidad}) => {
+export const DessertCard = ({dessert, addToCart}) => {
     const [cardSelected, setCardSelected] = useState(false);
-    const [cantidad, setCantidad] = useState(0);
     const imageUrl = `src/${dessert.image.desktop}`;
 
     if (!dessert) {
         return <p>No dessert data available</p>;
     }
 
+    // Función para agregar el postre al carrito con la cantidad
     const handleAddToCart = () => {
-        setCantidad(1); 
-        addToCart(dessert); 
         setCardSelected(true); 
+        addToCart(dessert, 1); 
     };
 
-    const incrementarCantidad = () => {
-        setCantidad(prevCantidad => {
-            const nuevaCantidad = prevCantidad + 1;
-            updateCantidad(dessert, nuevaCantidad);
-            return nuevaCantidad;
-        });
+    // Función para incrementar la cantidad
+    const incrementarCantidad = (e) => {
+        e.stopPropagation();  // evitar que se propague el evento al padre
+        addToCart(dessert, 1); 
     };
 
-    const decrementarCantidad = () => {
-        setCantidad(prevCantidad => {
-            const nuevaCantidad = prevCantidad - 1;
-            if (nuevaCantidad <= 0) {
-                setCardSelected(false);
-                return 0; 
-            }
-            updateCantidad(dessert, nuevaCantidad); 
-            return nuevaCantidad;
-        });
+    // Función para decrementar la cantidad
+    const decrementarCantidad = (e) => {
+        e.stopPropagation(); // evitar que se propague el evento al padre
+        if (dessert.cantidad > 1) {
+            addToCart(dessert, -1); 
+        } else {
+            setCardSelected(false); 
+            addToCart(dessert, -1);
+        }
     };
 
     return (
@@ -44,25 +40,27 @@ export const DessertCard = ({dessert, addToCart, updateCantidad}) => {
                     className={`${cardSelected ? 'selected-button d-flex align-items-center justify-content-between p-2' : 'dessert-card-button p-2'}`}
                     onClick={handleAddToCart}
                 >
-                    {cardSelected ? (
+                    {cardSelected || dessert.cantidad > 0 ? (
                         <>
-                            <img 
-                                src="src\assets\images\icon-decrement-quantity.svg" 
-                                alt="decrement icon"
-                                className="decrement-icon"
-                                onClick={decrementarCantidad}
-                            />
-                            <span className="cantidad-card">{cantidad}</span> 
-                            <img 
-                                src="src\assets\images\icon-increment-quantity.svg" 
-                                alt="increment icon"
-                                className="increment-icon"
-                                onClick={incrementarCantidad} 
-                            />
+                            <button className="button-incrementar" onClick={decrementarCantidad}>
+                                <img 
+                                    src="src/assets/images/icon-decrement-quantity.svg" 
+                                    alt="decrement icon"
+                                    className="decrement-icon"
+                                />
+                            </button>
+                            <span className="cantidad-card">{dessert.cantidad}</span> 
+                            <button className="button-incrementar" onClick={incrementarCantidad} >
+                                <img 
+                                    src="src/assets/images/icon-increment-quantity.svg" 
+                                    alt="increment icon"
+                                    className="increment-icon"
+                                />
+                            </button>
                         </>
                     ) : (
                         <>
-                            <img src="src\assets\images\icon-add-to-cart.svg" alt="add to cart icon" className='dessert-card-icon me-2 mb-1' />
+                            <img src="src/assets/images/icon-add-to-cart.svg" alt="add to cart icon" className='dessert-card-icon me-2 mb-1' />
                             Add to cart
                         </>
                     )}
