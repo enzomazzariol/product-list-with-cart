@@ -35,10 +35,10 @@ function App() {
 
   return (
     <section className="container">
-      <div className="d-flex p-5">
+      <div className="d-flex flex-ls-row flex-md-row flex-sm-column flex-column p-5">
         <div className="w-100 d-flex flex-column">
           <h3 className="title mb-4">Desserts</h3>
-          <div className="d-flex justify-content-between cards-container flex-wrap">
+          <div className="d-flex justify-content-lg-between cards-container flex-wrap justify-content-md-center justify-content-sm-center justify-content-center">
             {desserts.map((dessert) => (
               <DessertCard
                 key={dessert.name}
@@ -48,7 +48,7 @@ function App() {
             ))}
           </div>
         </div>
-        <Cart cart={cart} setCart={setCart} removeFromCart={removeFromCart} />
+        <Cart cart={cart} removeFromCart={removeFromCart} />
       </div>
       <div className="attribution text-center">
         Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.

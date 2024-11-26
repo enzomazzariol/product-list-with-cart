@@ -2,15 +2,16 @@
 // src/components/Modal.jsx
 import '../css/App.css';
 
-const Modal = ({ show, close }) => {
-  if (!show) return null;  // Si no se debe mostrar el modal, no renderiza nada.
+const Modal = ({ showModal, closeModal, totalPrice, cart }) => {
+  if (!showModal) return null;  // Si no se debe mostrar el modal, no renderiza nada.
 
   const handleClickOutside = (e) => {
     // Cerrar el modal si se hace clic en el fondo
     if (e.target.classList.contains('modal-overlay')) {
-      close();
+      closeModal();
     }
   };
+
 
   return (
     <div className="modal-overlay" onClick={handleClickOutside}>
@@ -18,7 +19,30 @@ const Modal = ({ show, close }) => {
         <img src="src\assets\images\icon-order-confirmed.svg" alt="icon confirm order" className='modal-icon mb-3' />
         <h2 className='modal-title'>Order Confirmed</h2>
         <p className='modal-description'>We hope you enjoy your food!</p>
-        <p>Lista de desserts</p>
+        <div className='order-list-container p-4 mb-4'>
+          {cart.map((item) => (
+            <section key={item.id} className='order-item-container d-flex justify-content-between align-items-center pb-2 mb-3'>
+              <div className='d-flex'>
+                <img src={`src/${item.image.thumbnail}`} alt="image thumbnail dessert" className='order-item-img' />
+                <div className='d-flex flex-column ms-3'>
+                  <p className='cart-item-name mb-2'>{item.name}</p>
+                  <div className='d-flex'>
+                    <p className="cart-item-cantidad me-3">{item.cantidad}x</p>
+                    <p className="cart-item-price">
+                        <span className="cart-arroba">@</span>
+                        ${item.price.toFixed(2)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <p className='cart-item-price order'>${item.price.toFixed(2)}</p>
+            </section>
+          ))}
+          <div className="d-flex justify-content-between align-items-center mt-4">
+            <p className="cart-total-title">Order total</p>
+            <p className="cart-total">${totalPrice.toFixed(2)}</p>
+          </div>
+        </div>
         <button className='confirm-order-button p-2'>Start new Order</button>
       </div>
     </div>

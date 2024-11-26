@@ -68,9 +68,10 @@ function Cart({ cart, removeFromCart }) {
 
             {showModal && (
                 <Modal
-                    setShowModal={setShowModal}
+                    showModal={showModal}
                     closeModal={closeModal}
                     totalPrice={totalPrice}
+                    cart={cart}
                 />
             )}
         </section>

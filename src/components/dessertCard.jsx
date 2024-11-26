@@ -1,13 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 /* eslint-disable react/prop-types */
 
 export const DessertCard = ({dessert, addToCart}) => {
     const [cardSelected, setCardSelected] = useState(false);
-    const imageUrl = `src/${dessert.image.desktop}`;
+    const [imageUrl, setImageUrl] = useState(`src/${dessert.image.desktop}`);
 
     if (!dessert) {
         return <p>No dessert data available</p>;
     }
+
+    useEffect(() => {
+        const updateImageUrl = () => {
+            if (window.innerWidth < 768) {
+                setImageUrl(`src/${dessert.image.mobile}`); // Cambia a la versión móvil
+            } else {
+                setImageUrl(`src/${dessert.image.desktop}`); // Cambia a la versión desktop
+            }
+        };
+
+        updateImageUrl(); // Llamar al inicio para establecer el valor inicial
+        window.addEventListener("resize", updateImageUrl); // Escuchar cambios en el tamaño
+
+        // Limpiar el evento al desmontar el componente
+        return () => {
+            window.removeEventListener("resize", updateImageUrl);
+        };
+    }, [dessert.image.desktop, dessert.image.mobile]);
 
     // Función para agregar el postre al carrito con la cantidad
     const handleAddToCart = () => {

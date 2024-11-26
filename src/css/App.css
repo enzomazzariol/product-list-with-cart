@@ -235,7 +235,10 @@
     width: 100%;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     height: auto;
+    max-height: 700px;
     z-index: 1001;
+    overscroll-behavior: contain;
+    overflow-y: auto;
   }
 
   .modal-icon {
@@ -250,4 +253,70 @@
   .modal-description {
     font-size: 16px;
     color: var(--rose-500);
+  }
+
+  .order-list-container {
+     background-color: rgba(235, 231, 231, 0.388);
+     border-radius: 8px;
+     max-height: fit-content;
+  }
+
+  .order-item-container {
+    border-bottom: 3px solid var(--rose-100);
+  }
+
+  .order-item-img {
+    width: 65px;
+    height: 65px;
+    border-radius: 6px;
+  }
+
+  .cart-item-price.order {
+    color: var(--rose-900);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  /* RESPONSIVE */
+
+  @media screen and (max-width: 776px) {
+
+    .cart-container {
+        width: 400px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .dessert-card-img{
+        width: 380px;
+    }
+
+    .dessert-card {
+        width: 380px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .cart-container {
+        width: 340px;
+    }
+    
+    .title {
+        text-align: center;
+    }
+
+    .dessert-card-img{
+        width: 380px;
+    }
+
+    .dessert-card {
+        width: 380px;
+    }
+
+    .modal-container {
+        max-width: 400px;
+        max-height: 650px;
+      }
   }
