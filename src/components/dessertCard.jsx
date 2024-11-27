@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 /* eslint-disable react/prop-types */
 
 const DessertCard = ({ dessert, addToCart }) => {
-    const [imageUrl, setImageUrl] = useState(`public/${dessert.image.desktop}`);
+    const [imageUrl, setImageUrl] = useState(`${dessert.image.desktop}`);
   
     useEffect(() => {
       const updateImageUrl = () => {
         if (window.innerWidth < 768) {
-          setImageUrl(`src/${dessert.image.mobile}`);
+          setImageUrl(`${dessert.image.mobile}`);
         } else {
-          setImageUrl(`src/${dessert.image.desktop}`);
+          setImageUrl(`${dessert.image.desktop}`);
         }
       };
   
@@ -47,7 +47,7 @@ const DessertCard = ({ dessert, addToCart }) => {
             <div className="selected-button d-flex align-items-center justify-content-between p-2">
               <button className="button-incrementar" onClick={decrementarCantidad}>
                 <img
-                  src="public/images/icon-decrement-quantity.svg"
+                  src="images/icon-decrement-quantity.svg"
                   alt="decrement icon"
                   className="decrement-icon"
                 />
@@ -55,7 +55,7 @@ const DessertCard = ({ dessert, addToCart }) => {
               <span className="cantidad-card">{dessert.cantidad}</span>
               <button className="button-incrementar" onClick={incrementarCantidad}>
                 <img
-                  src="public/images/icon-increment-quantity.svg"
+                  src="images/icon-increment-quantity.svg"
                   alt="increment icon"
                   className="increment-icon"
                 />
@@ -67,7 +67,7 @@ const DessertCard = ({ dessert, addToCart }) => {
               onClick={handleAddToCart}
             >
               <img
-                src="public/images/icon-add-to-cart.svg"
+                src="images/icon-add-to-cart.svg"
                 alt="add to cart icon"
                 className="dessert-card-icon me-2 mb-1"
               />

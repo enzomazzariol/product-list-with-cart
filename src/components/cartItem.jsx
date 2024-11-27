@@ -23,7 +23,7 @@ function CartItem({ item, removeFromCart }) {
                 onClick={() => removeFromCart(item)}
             >
                 <img
-                    src="public/images/icon-remove-item.svg"
+                    src="images/icon-remove-item.svg"
                     alt="remove item icon"
                     className="remove-item-icon"
                 />
