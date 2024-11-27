@@ -8,7 +8,7 @@ function App() {
   const [desserts, setDesserts] = useState([]);
 
   useEffect(() => {
-    fetch('/data.json')
+    fetch('../public/data.json')
       .then((response) => response.json())
       .then((data) => {
         // Crear una lista de postres con la cantidad del carrito si existe
