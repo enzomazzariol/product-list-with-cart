@@ -1,18 +1,28 @@
 import './css/App.css';
-import data from '../public/data.json';
 import DessertCard from './components/dessertCard.jsx';
 import Cart from './components/cart.jsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [cart, setCart] = useState([]);
-  
-  // Crear una lista de objetos Dessert con sus datos iniciales
-  const desserts = data.map((dessert) => {
-    const dessertInCart = cart.find(item => item.name === dessert.name);
-    const cantidad = dessertInCart ? dessertInCart.cantidad : 0; // Verifica si está en el carrito
-    return { ...dessert, cantidad }; // Añade la cantidad al postre
-  });
+  const [desserts, setDesserts] = useState([]);
+
+  useEffect(() => {
+    fetch('/data.json')
+      .then((response) => response.json())
+      .then((data) => {
+        // Crear una lista de postres con la cantidad del carrito si existe
+        const updatedDesserts = data.map((dessert) => {
+          const dessertInCart = cart.find(item => item.name === dessert.name);
+          const cantidad = dessertInCart ? dessertInCart.cantidad : 0; 
+          return { ...dessert, cantidad }; // Añade la cantidad al postre
+        });
+        setDesserts(updatedDesserts); 
+      })
+      .catch((error) => {
+        console.error('Error al cargar los datos JSON:', error);
+      });
+  }, [cart]);
 
   const addToCart = (dessert, quantity = 1) => {
     setCart((prevCart) => {
