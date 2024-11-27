@@ -13,14 +13,14 @@ const Modal = ({ showModal, closeModal, totalPrice, cart }) => {
   return (
     <div className="modal-overlay" onClick={handleClickOutside}>
       <div className="modal-container d-flex flex-column p-4" onClick={(e) => e.stopPropagation()}>
-        <img src="src/assets/images/icon-order-confirmed.svg" alt="icon confirm order" className="modal-icon mb-3" />
+        <img src="public/images/icon-order-confirmed.svg" alt="icon confirm order" className="modal-icon mb-3" />
         <h2 className="modal-title">Order Confirmed</h2>
         <p className="modal-description">We hope you enjoy your food!</p>
         <div className="order-list-container p-4 mb-4">
           {itemsInModal.map((item) => (
             <section key={item.id} className="order-item-container d-flex justify-content-between align-items-center pb-2 mb-3">
               <div className="d-flex">
-                <img src={`src/${item.image.thumbnail}`} alt="image thumbnail dessert" className="order-item-img" />
+                <img src={`public/${item.image.thumbnail}`} alt="image thumbnail dessert" className="order-item-img" />
                 <div className="d-flex flex-column ms-3">
                   <p className="cart-item-name mb-2">{item.name}</p>
                   <div className="d-flex">

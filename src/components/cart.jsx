@@ -22,7 +22,7 @@ function Cart({ cart, removeFromCart }) {
                 <>
                     <p className="cart-title">Your Cart (0)</p>
                     <img
-                        src="src/assets/images/illustration-empty-cart.svg"
+                        src="public/images/illustration-empty-cart.svg"
                         alt="image empty cart"
                         className="cart-img"
                     />
@@ -47,7 +47,7 @@ function Cart({ cart, removeFromCart }) {
                         </div>
                         <div className="delivery-message d-flex justify-content-center align-items-center mb-4 p-3">
                             <img
-                                src="src/assets/images/icon-carbon-neutral.svg"
+                                src="public/images/icon-carbon-neutral.svg"
                                 alt="carbon neutral delivery"
                                 className="me-2"
                             />
