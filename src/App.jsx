@@ -1,5 +1,5 @@
 import './css/App.css';
-import data from '../data.json';
+import data from '../public/data.json';
 import DessertCard from './components/dessertCard.jsx';
 import Cart from './components/cart.jsx';
 import { useState } from 'react';
