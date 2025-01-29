@@ -10,6 +10,10 @@
     --rose-400: hsl(7, 20%, 60%);
     --rose-500: hsl(12, 20%, 44%);
     --rose-900: hsl(14, 65%, 9%);
+
+    box-sizing: border-box;
+    padding: 0;
+    margin: auto 0;
   }
 
 .title {
@@ -109,6 +113,7 @@
     background-color: var(--rose-100);
     border-radius: 8px;
     font-family: 'Red Hat Text';
+    margin-left: 70px;
 }
 
 .cart-img {
@@ -282,7 +287,9 @@
   @media screen and (max-width: 776px) {
 
     .cart-container {
-        width: 400px;
+        width: 40px;
+        margin-left: 0;
+        margin-top: 30px;
     }
 
     .title {
@@ -300,7 +307,7 @@
 
   @media screen and (max-width: 576px) {
     .cart-container {
-        width: 340px;
+        width: 370px;
     }
     
     .title {
