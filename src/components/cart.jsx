@@ -17,7 +17,7 @@ function Cart({ cart, removeFromCart }) {
     const itemsInCart = cart.filter((item) => item.cantidad > 0);
 
     return (
-        <section className="flex-shrink-1 p-4 cart-container">
+        <section className="p-4 cart-container">
             {itemsInCart.length === 0 ? (
                 <>
                     <p className="cart-title">Your Cart (0)</p>

@@ -29,6 +29,7 @@
 /*Card css*/
 .cards-container {
     row-gap: 30px;
+    column-gap: 10px;
 }
 
 .dessert-card {
@@ -287,8 +288,8 @@
   @media screen and (max-width: 776px) {
 
     .cart-container {
-        width: 40px;
-        margin-left: 0;
+        width: 400px;
+        margin-left: 25px;
         margin-top: 30px;
     }
 
