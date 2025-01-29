@@ -45,10 +45,10 @@ function App() {
 
   return (
     <section className="container">
-      <div className="d-flex flex-md-row flex-sm-column flex-column p-4 pt-5">
+      <div className="d-flex flex-md-row flex-sm-column flex-column pt-5">
         <div className="w-100 d-flex flex-column">
           <h3 className="title mb-4">Desserts</h3>
-          <div className="d-flex justify-content-lg-between cards-container flex-wrap justify-content-md-center justify-content-sm-center justify-content-center">
+          <div className="d-flex cards-container flex-wrap justify-content-md-center justify-content-sm-center justify-content-center">
             {desserts.map((dessert) => (
               <DessertCard
                 key={dessert.name}
